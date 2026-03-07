@@ -1015,7 +1015,7 @@ nav.scrolled {
 .pay-caption strong { color:var(--cyan); }
 
 /* ═══════════════════════════════════════════
-   DOWNLOAD SECTION (UPDATED)
+   DOWNLOAD SECTION (USER‑FRIENDLY)
 ══════════════════════════════════════════ */
 .dl-section {
   background:var(--bg1);
@@ -1063,29 +1063,31 @@ nav.scrolled {
 .dl-desc {
   font-size:17px; line-height:1.8;
   color:var(--text2); max-width:520px;
-  margin:0 auto 56px;
+  margin:0 auto 36px;
 }
 
+/* Primary download button – one big obvious button for most users */
 .dl-btn-main {
-  display:inline-flex; align-items:center; gap:14px;
-  padding:20px 52px;
+  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  padding:20px 48px;
   background:linear-gradient(135deg,var(--gold),#E8860A);
   color:#000;
   font-family:'Syne',sans-serif;
-  font-size:16px; font-weight:800;
-  letter-spacing:2px; text-transform:uppercase;
-  border-radius:16px;
+  font-size:18px; font-weight:800;
+  letter-spacing:1.5px; text-transform:uppercase;
+  border-radius:60px; /* more rounded for a friendly look */
   text-decoration:none; border:none; cursor:pointer;
   position:relative; overflow:hidden;
   transition:transform 0.25s, box-shadow 0.25s;
   box-shadow:
-    0 4px 24px rgba(245,166,35,0.3),
+    0 8px 32px rgba(245,166,35,0.4),
     0 0 0 1px rgba(255,255,255,0.15) inset;
-  margin-bottom:20px;
+  margin:0 auto 20px;
+  min-width: 300px;
 }
 .dl-btn-main:hover {
   transform:translateY(-4px) scale(1.02);
-  box-shadow:0 20px 64px rgba(245,166,35,0.5);
+  box-shadow:0 20px 48px rgba(245,166,35,0.6);
 }
 .dl-btn-main .dl-shine {
   position:absolute; top:0; left:-100%;
@@ -1095,36 +1097,61 @@ nav.scrolled {
   animation:dl-shine 3.5s ease infinite;
 }
 @keyframes dl-shine { 0%,100%{left:-100%} 45%,55%{left:140%} }
-.dl-android-icon { font-size:24px; }
+.dl-android-icon { font-size:28px; }
 
 .dl-meta {
   display:flex; gap:24px; justify-content:center;
-  flex-wrap:wrap; margin-top:20px;
+  flex-wrap:wrap; margin-top:16px;
+  color: var(--text2);
 }
 .dl-meta-item {
-  display:flex; align-items:center; gap:8px;
-  font-size:13px; color:var(--text3);
-  letter-spacing:0.5px;
+  font-size:14px;
+  display:flex; align-items:center; gap:4px;
 }
 .dl-meta-item::before { content:'✓'; color:var(--gold); font-weight:700; }
 
-/* Architecture selection box */
-.arch-box {
-  margin-top: 40px;
+/* Simple installation help */
+.dl-install-note {
+  margin-top:32px;
+  padding:20px 28px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:24px;
+  font-size:14px; color:var(--text3);
+  line-height:1.7;
+  backdrop-filter:blur(12px);
+  text-align:left;
+}
+.dl-install-note strong { color:var(--gold); font-weight:600; }
+.dl-install-note a { color:var(--cyan); text-decoration:none; }
+.dl-install-note a:hover { text-decoration:underline; }
+
+/* Advanced options – hidden by default, friendly expandable */
+details {
+  margin-top: 32px;
   background: var(--glass);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 24px;
-  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 16px 24px;
   text-align: left;
 }
-.arch-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 20px;
-  letter-spacing: -0.3px;
+summary {
+  font-size: 15px;
+  color: var(--text2);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+summary::-webkit-details-marker { display: none; }
+summary:hover { color: var(--gold); }
+.advanced-grid {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .arch-row {
   display: flex;
@@ -1132,7 +1159,7 @@ nav.scrolled {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
-  padding: 12px 0;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--border);
 }
 .arch-row:last-child { border-bottom: none; }
@@ -1142,63 +1169,37 @@ nav.scrolled {
 }
 .arch-desc {
   color: var(--text3);
-  margin-left: 8px;
   font-size: 13px;
+  margin-left: 4px;
 }
 .arch-btns {
   display: flex;
   gap: 10px;
 }
 .arch-btn {
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-size: 12px;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.5px;
   text-decoration: none;
   transition: all 0.2s;
-}
-.arch-btn.apk {
   background: var(--gold-dim);
   color: var(--gold);
+  border: 1px solid rgba(245,166,35,0.3);
 }
-.arch-btn.apk:hover { background: rgba(245,166,35,0.25); }
-.arch-btn.sha1 {
-  background: var(--glass);
-  color: var(--text3);
-  border: 1px solid var(--border);
+.arch-btn:hover {
+  background: rgba(245,166,35,0.25);
+  transform: translateY(-2px);
 }
-.arch-btn.sha1:hover { border-color: var(--gold); color: var(--gold); }
-.arch-note {
-  margin-top: 24px;
+.sha1-note {
+  margin-top: 20px;
   font-size: 12px;
   color: var(--text3);
   border-top: 1px solid var(--border);
   padding-top: 16px;
 }
-.arch-note strong { color: var(--gold); }
-
-.dl-install-note {
-  margin-top:36px;
-  padding:20px 28px;
-  background:var(--glass);
-  border:1px solid var(--border);
-  border-radius:14px;
-  font-size:13px; color:var(--text3);
-  line-height:1.7;
-  backdrop-filter:blur(12px);
-  text-align:left;
-}
-.dl-install-note strong { color:var(--gold); font-weight:600; }
-.dl-install-note a { color:var(--cyan); text-decoration:none; }
-.dl-install-note a:hover { text-decoration:underline; }
-
-.sha1-footer {
-  margin-top: 20px;
-  font-size: 11px;
-  color: var(--text3);
-  text-align: center;
-}
+.sha1-note a { color: var(--cyan); text-decoration: none; }
+.sha1-note a:hover { text-decoration: underline; }
 
 /* ═══════════════════════════════════════════
    SOCIAL / CONTACT
@@ -1417,6 +1418,7 @@ footer {
   .contact-grid { grid-template-columns:1fr; }
   .dl-meta { flex-direction:column; align-items:center; }
   .hero-title { font-size:clamp(62px,18vw,120px); }
+  .dl-btn-main { min-width: auto; width: 100%; padding: 16px 24px; font-size: 16px; }
 }
 </style>
 </head>
@@ -1930,7 +1932,7 @@ footer {
   </div>
 </section>
 
-<!-- ═══ DOWNLOAD SECTION (UPDATED) ═══ -->
+<!-- ═══ DOWNLOAD SECTION (USER‑FRIENDLY) ═══ -->
 <section class="dl-section section-wrap" id="download">
   <div class="dl-inner reveal">
     <div class="dl-version">
@@ -1942,75 +1944,74 @@ footer {
       GET THE<br><span>AGM</span><br>APP NOW
     </h2>
 
-    <p class="dl-desc">Available exclusively here — not on the Play Store. Direct APK install on any Android device running 6.0 or higher.</p>
+    <p class="dl-desc">Available exclusively here — not on the Play Store. Works on any Android device running 6.0 or higher.</p>
 
-    <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
-      <!-- Main button to GitHub release page -->
-      <a href="https://github.com/afridigamingshop/agm/releases/latest" class="dl-btn-main" target="_blank" rel="noopener">
+    <!-- Primary download button – one big obvious button for most users -->
+    <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+      <a href="https://github.com/afridigamingshop/afridigamingshop.github.io/releases/download/v1.0.0/AGM_v1.0.0_arm64-v8a-release.apk" 
+         class="dl-btn-main" 
+         download>
         <div class="dl-shine"></div>
-        <span class="dl-android-icon">🤖</span>
-        DOWNLOAD FROM GITHUB
+        <span class="dl-android-icon">📱</span>
+        Download for Android
       </a>
 
       <div class="dl-meta">
-        <div class="dl-meta-item">Free to Download</div>
-        <div class="dl-meta-item">Android 6.0+</div>
-        <div class="dl-meta-item">No Sign-Up to Browse</div>
-        <div class="dl-meta-item">~18MB Only</div>
+        <span class="dl-meta-item">Free</span>
+        <span class="dl-meta-item">18 MB</span>
+        <span class="dl-meta-item">Android 6.0+</span>
+        <span class="dl-meta-item">Secure</span>
       </div>
     </div>
 
-    <!-- Architecture selection box -->
-    <div class="arch-box">
-      <div class="arch-title">📲 Choose your device architecture</div>
-      <!-- arm64-v8a -->
-      <div class="arch-row">
-        <div>
-          <span class="arch-name">arm64‑v8a</span>
-          <span class="arch-desc">For most 2020+ devices (Samsung, Xiaomi, etc.)</span>
-        </div>
-        <div class="arch-btns">
-          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_arm64-v8a-release.apk" class="arch-btn apk" download>APK</a>
-          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_arm64-v8a-release.apk.sha1" class="arch-btn sha1" download>SHA1</a>
-        </div>
-      </div>
-      <!-- armeabi-v7a -->
-      <div class="arch-row">
-        <div>
-          <span class="arch-name">armeabi‑v7a</span>
-          <span class="arch-desc">For older phones (2016–2019)</span>
-        </div>
-        <div class="arch-btns">
-          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_armeabi-v7a-release.apk" class="arch-btn apk" download>APK</a>
-          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_armeabi-v7a-release.apk.sha1" class="arch-btn sha1" download>SHA1</a>
-        </div>
-      </div>
-      <!-- x86_64 -->
-      <div class="arch-row">
-        <div>
-          <span class="arch-name">x86_64</span>
-          <span class="arch-desc">For emulators and some tablets</span>
-        </div>
-        <div class="arch-btns">
-          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_x86_64-release.apk" class="arch-btn apk" download>APK</a>
-          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_x86_64-release.apk.sha1" class="arch-btn sha1" download>SHA1</a>
-        </div>
-      </div>
-      <div class="arch-note">
-        ⚡ <strong>Not sure which one?</strong> If your phone is from 2020 or later, choose <strong>arm64‑v8a</strong>. Older devices use armeabi‑v7a. The x86_64 version is only for Android emulators on PC.
-      </div>
-    </div>
-
+    <!-- Simple installation help -->
     <div class="dl-install-note">
-      <strong>📋 Installation Guide:</strong> After downloading, go to
-      <strong>Settings → Security → Unknown Sources</strong> and enable it,
-      then open the downloaded APK to install.
-      Need help? <a href="https://wa.me/923196346060">Chat with us on WhatsApp</a> — we'll guide you step by step.
+      <strong>📱 How to install:</strong> After downloading, open the file and tap "Install". 
+      If asked, allow installation from unknown sources in your settings.
+      Need help? <a href="https://wa.me/923196346060">Chat with us on WhatsApp</a> — we'll guide you.
     </div>
 
-    <div class="sha1-footer">
-      🔐 SHA‑1 checksums provided to verify file integrity. Use any hash checker app.
-    </div>
+    <!-- Advanced options – expandable for tech‑savvy users -->
+    <details>
+      <summary>
+        <span style="font-size: 18px;">⚙️</span> Need a different version? (for older phones / emulators)
+      </summary>
+      <div class="advanced-grid">
+        <!-- arm64-v8a (already linked above) -->
+        <div class="arch-row">
+          <div>
+            <span class="arch-name">arm64‑v8a</span>
+            <span class="arch-desc">(2020+ phones) – already included above</span>
+          </div>
+          <div class="arch-btns">
+            <a href="https://github.com/afridigamingshop/afridigamingshop.github.io/releases/download/v1.0.0/AGM_v1.0.0_arm64-v8a-release.apk" class="arch-btn" download>APK</a>
+          </div>
+        </div>
+        <!-- armeabi-v7a -->
+        <div class="arch-row">
+          <div>
+            <span class="arch-name">armeabi‑v7a</span>
+            <span class="arch-desc">(older phones 2016–2019)</span>
+          </div>
+          <div class="arch-btns">
+            <a href="https://github.com/afridigamingshop/afridigamingshop.github.io/releases/download/v1.0.0/AGM_v1.0.0_armeabi-v7a-release.apk" class="arch-btn" download>APK</a>
+          </div>
+        </div>
+        <!-- x86_64 -->
+        <div class="arch-row">
+          <div>
+            <span class="arch-name">x86_64</span>
+            <span class="arch-desc">(emulators / tablets)</span>
+          </div>
+          <div class="arch-btns">
+            <a href="https://github.com/afridigamingshop/afridigamingshop.github.io/releases/download/v1.0.0/AGM_v1.0.0_x86_64-release.apk" class="arch-btn" download>APK</a>
+          </div>
+        </div>
+        <div class="sha1-note">
+          🔐 SHA‑1 checksums available on the <a href="https://github.com/afridigamingshop/afridigamingshop.github.io/releases/tag/v1.0.0">GitHub release page</a> for integrity verification.
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
