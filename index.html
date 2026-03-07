@@ -1015,7 +1015,7 @@ nav.scrolled {
 .pay-caption strong { color:var(--cyan); }
 
 /* ═══════════════════════════════════════════
-   DOWNLOAD SECTION
+   DOWNLOAD SECTION (UPDATED)
 ══════════════════════════════════════════ */
 .dl-section {
   background:var(--bg1);
@@ -1108,6 +1108,76 @@ nav.scrolled {
 }
 .dl-meta-item::before { content:'✓'; color:var(--gold); font-weight:700; }
 
+/* Architecture selection box */
+.arch-box {
+  margin-top: 40px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: blur(12px);
+  text-align: left;
+}
+.arch-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 20px;
+  letter-spacing: -0.3px;
+}
+.arch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.arch-row:last-child { border-bottom: none; }
+.arch-name {
+  font-weight: 600;
+  color: var(--gold);
+}
+.arch-desc {
+  color: var(--text3);
+  margin-left: 8px;
+  font-size: 13px;
+}
+.arch-btns {
+  display: flex;
+  gap: 10px;
+}
+.arch-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.arch-btn.apk {
+  background: var(--gold-dim);
+  color: var(--gold);
+}
+.arch-btn.apk:hover { background: rgba(245,166,35,0.25); }
+.arch-btn.sha1 {
+  background: var(--glass);
+  color: var(--text3);
+  border: 1px solid var(--border);
+}
+.arch-btn.sha1:hover { border-color: var(--gold); color: var(--gold); }
+.arch-note {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--text3);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.arch-note strong { color: var(--gold); }
+
 .dl-install-note {
   margin-top:36px;
   padding:20px 28px;
@@ -1122,6 +1192,13 @@ nav.scrolled {
 .dl-install-note strong { color:var(--gold); font-weight:600; }
 .dl-install-note a { color:var(--cyan); text-decoration:none; }
 .dl-install-note a:hover { text-decoration:underline; }
+
+.sha1-footer {
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--text3);
+  text-align: center;
+}
 
 /* ═══════════════════════════════════════════
    SOCIAL / CONTACT
@@ -1853,12 +1930,12 @@ footer {
   </div>
 </section>
 
-<!-- ═══ DOWNLOAD ═══ -->
+<!-- ═══ DOWNLOAD SECTION (UPDATED) ═══ -->
 <section class="dl-section section-wrap" id="download">
   <div class="dl-inner reveal">
     <div class="dl-version">
       <div class="dl-dot"></div>
-      Android APK · v1.0 · ~18MB · Free Download
+      Android APK · v1.0.0 · First Public Beta
     </div>
 
     <h2 class="dl-title">
@@ -1868,10 +1945,11 @@ footer {
     <p class="dl-desc">Available exclusively here — not on the Play Store. Direct APK install on any Android device running 6.0 or higher.</p>
 
     <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
-      <a href="agm.apk" class="dl-btn-main" download>
+      <!-- Main button to GitHub release page -->
+      <a href="https://github.com/afridigamingshop/agm/releases/latest" class="dl-btn-main" target="_blank" rel="noopener">
         <div class="dl-shine"></div>
         <span class="dl-android-icon">🤖</span>
-        DOWNLOAD FOR ANDROID
+        DOWNLOAD FROM GITHUB
       </a>
 
       <div class="dl-meta">
@@ -1882,11 +1960,56 @@ footer {
       </div>
     </div>
 
+    <!-- Architecture selection box -->
+    <div class="arch-box">
+      <div class="arch-title">📲 Choose your device architecture</div>
+      <!-- arm64-v8a -->
+      <div class="arch-row">
+        <div>
+          <span class="arch-name">arm64‑v8a</span>
+          <span class="arch-desc">For most 2020+ devices (Samsung, Xiaomi, etc.)</span>
+        </div>
+        <div class="arch-btns">
+          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_arm64-v8a-release.apk" class="arch-btn apk" download>APK</a>
+          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_arm64-v8a-release.apk.sha1" class="arch-btn sha1" download>SHA1</a>
+        </div>
+      </div>
+      <!-- armeabi-v7a -->
+      <div class="arch-row">
+        <div>
+          <span class="arch-name">armeabi‑v7a</span>
+          <span class="arch-desc">For older phones (2016–2019)</span>
+        </div>
+        <div class="arch-btns">
+          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_armeabi-v7a-release.apk" class="arch-btn apk" download>APK</a>
+          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_armeabi-v7a-release.apk.sha1" class="arch-btn sha1" download>SHA1</a>
+        </div>
+      </div>
+      <!-- x86_64 -->
+      <div class="arch-row">
+        <div>
+          <span class="arch-name">x86_64</span>
+          <span class="arch-desc">For emulators and some tablets</span>
+        </div>
+        <div class="arch-btns">
+          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_x86_64-release.apk" class="arch-btn apk" download>APK</a>
+          <a href="https://github.com/afridigamingshop/agm/releases/download/v1.0.0/AGM_v1.0.0_x86_64-release.apk.sha1" class="arch-btn sha1" download>SHA1</a>
+        </div>
+      </div>
+      <div class="arch-note">
+        ⚡ <strong>Not sure which one?</strong> If your phone is from 2020 or later, choose <strong>arm64‑v8a</strong>. Older devices use armeabi‑v7a. The x86_64 version is only for Android emulators on PC.
+      </div>
+    </div>
+
     <div class="dl-install-note">
       <strong>📋 Installation Guide:</strong> After downloading, go to
       <strong>Settings → Security → Unknown Sources</strong> and enable it,
       then open the downloaded APK to install.
       Need help? <a href="https://wa.me/923196346060">Chat with us on WhatsApp</a> — we'll guide you step by step.
+    </div>
+
+    <div class="sha1-footer">
+      🔐 SHA‑1 checksums provided to verify file integrity. Use any hash checker app.
     </div>
   </div>
 </section>
